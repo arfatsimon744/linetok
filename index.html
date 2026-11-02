@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,92 +7,302 @@
 <meta name="theme-color" content="#080b0a">
 <title>LINETOK — Create. Share. Connect.</title>
 <style>
-:root{--bg:#080b0a;--panel:#111715;--panel2:#17201c;--line:#26332d;--text:#f4f8f5;--muted:#91a198;--green:#35e68b;--green2:#16b96b}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
-button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh}
-.topbar{height:70px;position:sticky;top:0;z-index:10;background:#080b0aeb;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 1240px)/2));gap:20px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px;font-size:22px}.brand-mark{width:34px;height:34px;border-radius:11px;background:var(--green);display:grid;place-items:center;color:#07110b;font-weight:1000;letter-spacing:-2px}
-.search{width:min(390px,38vw);background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:11px 17px;color:var(--text);outline:none}.search:focus{border-color:var(--green)}
-.top-actions{display:flex;align-items:center;gap:12px}.btn{border:0;border-radius:12px;padding:10px 17px;font-weight:750}.btn-green{background:var(--green);color:#06110a}.btn-ghost{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
-.layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:220px minmax(0,1fr) 260px;gap:26px;padding:26px 22px}
-.sidebar{position:sticky;top:95px;height:max-content}.nav{display:grid;gap:7px}.nav button{background:transparent;color:#c2cec7;border:0;text-align:left;padding:13px 14px;border-radius:12px;font-weight:650}.nav button.active,.nav button:hover{background:#14251c;color:var(--green)}.nav small{display:block;color:var(--muted);font-size:11px;margin:24px 14px 8px;letter-spacing:1.5px}
-.main{min-width:0}.welcome{padding:23px 24px;border:1px solid var(--line);border-radius:19px;background:radial-gradient(ellipse at 85% 0%,#16452c 0%,transparent 48%),var(--panel);margin-bottom:20px}.welcome h1{font-size:clamp(24px,3vw,34px);margin:0 0 5px;letter-spacing:-1px}.welcome p{color:var(--muted);margin:0}
-.tabs{display:flex;gap:20px;border-bottom:1px solid var(--line);margin-bottom:18px}.tabs button{border:0;background:none;color:var(--muted);padding:12px 2px;font-weight:700;border-bottom:2px solid transparent}.tabs button.active{color:var(--green);border-color:var(--green)}
-.feed{display:grid;gap:18px}.post{border:1px solid var(--line);background:var(--panel);border-radius:18px;overflow:hidden}.post-head{display:flex;align-items:center;gap:11px;padding:14px 16px}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#1b3828;color:var(--green);font-weight:850}.user{font-weight:750}.handle{font-size:12px;color:var(--muted)}.post-media{width:100%;max-height:650px;aspect-ratio:9/12;background:#050706;display:grid;place-items:center;overflow:hidden;position:relative}.post-media video{width:100%;height:100%;object-fit:contain}.placeholder{padding:30px;text-align:center;color:#c6d4cb}.placeholder strong{display:block;font-size:21px;color:var(--green);margin-bottom:8px}.post-foot{padding:13px 16px}.caption{margin:0 0 12px;color:#e2ebe5}.actions{display:flex;gap:18px}.action{background:none;border:0;color:#aab8af;padding:5px 0}.action.liked{color:var(--green)}.right-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:17px;margin-bottom:14px}.right-card h3{margin:0 0 12px;font-size:14px}.trend{padding:9px 0;border-bottom:1px solid #202b25}.trend:last-child{border:0}.trend b{display:block;font-size:13px}.trend span{font-size:12px;color:var(--muted)}.muted{color:var(--muted);font-size:12px}
-.modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;place-items:center;padding:20px}.modal.open{display:grid}.dialog{width:min(520px,100%);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:23px}.dialog h2{margin:0 0 5px}.dialog p{color:var(--muted);margin:0 0 18px}.drop{border:1px dashed #42614f;border-radius:15px;padding:27px;text-align:center;background:#0d1510}.drop input{max-width:100%;margin-top:13px}.field{width:100%;margin-top:14px;padding:12px;border-radius:10px;background:#0a100d;border:1px solid var(--line);color:var(--text)}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.notice{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#183c29;border:1px solid #2e7950;color:#dfffea;padding:11px 17px;border-radius:12px;display:none;z-index:50}
+:root{--bg:#080b0a;--panel:#111715;--panel2:#17201c;--line:#26332d;--text:#f4f8f5;--muted:#91a198;--green:#35e68b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,sans-serif}
+button,input{font:inherit}button{cursor:pointer}
+.topbar{height:70px;position:sticky;top:0;z-index:10;background:#080b0aeb;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 4%;gap:15px}
+.brand{font-weight:900;letter-spacing:2px;font-size:22px}
+.brand-mark{background:var(--green);color:#07110b;padding:8px 12px;border-radius:10px}
+.search{width:30%;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:11px 17px;color:white}
+.top-actions{display:flex;gap:9px}
+.btn{border:0;border-radius:10px;padding:10px 15px;font-weight:750}
+.btn-green{background:var(--green);color:#06110a}
+.btn-ghost{background:var(--panel2);color:white;border:1px solid var(--line)}
+.layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:210px minmax(0,1fr) 240px;gap:24px;padding:25px 20px}
+.nav{display:grid;gap:8px}
+.nav button{background:transparent;color:#c2cec7;border:0;text-align:left;padding:13px;border-radius:10px}
+.nav button:hover{background:#14251c;color:var(--green)}
+.welcome,.right-card,.post,.dialog{background:var(--panel);border:1px solid var(--line);border-radius:17px}
+.welcome{padding:23px;margin-bottom:20px}
+.welcome h1{margin:0 0 5px}
+.welcome p,.muted{color:var(--muted)}
+.tabs{display:flex;gap:20px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.tabs button{border:0;background:none;color:var(--muted);padding:12px}
+.tabs button.active{color:var(--green);border-bottom:2px solid var(--green)}
+.feed{display:grid;gap:18px}
+.post{overflow:hidden}
+.post-head{display:flex;align-items:center;gap:11px;padding:14px}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#1b3828;color:var(--green);font-weight:bold}
+.handle{font-size:12px;color:var(--muted)}
+.post-media{width:100%;aspect-ratio:9/12;max-height:600px;background:#050706;display:grid;place-items:center;overflow:hidden}
+.post-media video{width:100%;height:100%;object-fit:contain}
+.placeholder{text-align:center;padding:30px}
+.placeholder strong{display:block;color:var(--green);font-size:21px}
+.post-foot{padding:14px}
+.actions{display:flex;gap:18px}
+.action{background:none;border:0;color:#aab8af}
+.action.liked{color:var(--green)}
+.right-card{padding:17px;margin-bottom:14px}
+.trend{padding:9px 0;border-bottom:1px solid #26332d}
+.trend span{display:block;font-size:12px;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;place-items:center;padding:20px}
+.modal.open{display:grid}
+.dialog{width:min(500px,100%);padding:23px}
+.field{width:100%;margin-top:14px;padding:12px;border-radius:10px;background:#0a100d;border:1px solid var(--line);color:white}
+.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}
+.auth-switch{display:flex;gap:10px;margin-top:15px}
+.auth-switch button{flex:1}
+.auth-status{font-size:12px;color:var(--muted);margin-top:12px}
+.notice{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#183c29;color:white;padding:12px 17px;border-radius:12px;display:none;z-index:50}
 footer{text-align:center;color:#68776e;padding:20px;font-size:12px}
-@media(max-width:980px){.layout{grid-template-columns:175px minmax(0,1fr)}.right{display:none}}
-@media(max-width:650px){.topbar{height:60px;padding:0 13px}.brand{font-size:18px}.search{display:none}.top-actions .btn-ghost{display:none}.layout{display:block;padding:16px 12px}.sidebar{position:static;margin-bottom:14px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 12px}.nav small{display:none}.welcome{padding:18px}.post-media{aspect-ratio:9/13}.top-actions .btn{padding:9px 12px}}
+@media(max-width:900px){.layout{grid-template-columns:160px minmax(0,1fr)}.right{display:none}}
+@media(max-width:600px){.topbar{height:auto;padding:12px;flex-wrap:wrap}.brand{font-size:18px}.search{display:none}.layout{display:block;padding:12px}.sidebar{margin-bottom:15px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.nav small{display:none}.top-actions .btn{padding:8px}}
 </style>
 </head>
 <body>
-<div class="app">
+
 <header class="topbar">
   <div class="brand"><span class="brand-mark">L</span> LINETOK</div>
-  <input class="search" id="search" placeholder="Search creators, videos..." aria-label="Search">
-  <div class="top-actions"><button class="btn btn-ghost" onclick="showNotice('Account sign-in will be enabled in the next setup step.')">Log in</button><button class="btn btn-green" onclick="openUpload()">＋ Upload</button></div>
+  <input class="search" id="search" placeholder="Search creators, videos...">
+  <div class="top-actions">
+    <button class="btn btn-ghost" id="loginBtn" onclick="openAuth('login')">Log in</button>
+    <button class="btn btn-green" id="signupBtn" onclick="openAuth('signup')">Create account</button>
+    <button class="btn btn-green" onclick="openUpload()">＋ Upload</button>
+  </div>
 </header>
+
 <div class="layout">
   <aside class="sidebar">
     <nav class="nav">
-      <button class="active" onclick="setNav(this,'For You')">⌂ &nbsp; For You</button>
-      <button onclick="setNav(this,'Following')">♡ &nbsp; Following</button>
-      <button onclick="setNav(this,'Explore')">⌕ &nbsp; Explore</button>
-      <button onclick="setNav(this,'Live')">◉ &nbsp; LIVE</button>
+      <button onclick="showNotice('For You selected')">⌂ For You</button>
+      <button onclick="showNotice('Following will be available soon')">♡ Following</button>
+      <button onclick="showNotice('Explore will be available soon')">⌕ Explore</button>
+      <button onclick="showNotice('LIVE coming soon')">◉ LIVE</button>
       <small>YOUR SPACE</small>
-      <button onclick="showNotice('Create an account to view your profile.')">♙ &nbsp; My Profile</button>
-      <button onclick="showNotice('Sign in to see your saved videos.')">▣ &nbsp; Saved</button>
+      <button onclick="openAuth('login')">♙ My Profile</button>
+      <button onclick="openAuth('login')">▣ Saved</button>
     </nav>
   </aside>
-  <main class="main">
-    <section class="welcome"><h1>Every scroll has a story.</h1><p>Create, share and discover videos with the LINETOK community.</p></section>
-    <div class="tabs"><button class="active" onclick="switchTab(this)">For You</button><button onclick="switchTab(this)">Trending</button><button onclick="switchTab(this)">Latest</button></div>
+
+  <main>
+    <section class="welcome">
+      <h1>Every scroll has a story.</h1>
+      <p>Create, share and discover videos with the LINETOK community.</p>
+    </section>
+    <div class="tabs">
+      <button class="active" onclick="switchTab(this)">For You</button>
+      <button onclick="switchTab(this)">Trending</button>
+      <button onclick="switchTab(this)">Latest</button>
+    </div>
     <section class="feed" id="feed">
       <article class="post">
-        <div class="post-head"><div class="avatar">L</div><div><div class="user">LINETOK Community</div><div class="handle">@linetok · Welcome</div></div></div>
-        <div class="post-media"><div class="placeholder"><strong>Welcome to LINETOK</strong>Your next favorite video starts here.<br><span class="muted">Be the first to share a moment.</span></div></div>
-        <div class="post-foot"><p class="caption">Welcome to LINETOK! Upload your first video and let the community see your creativity. ✨</p><div class="actions"><button class="action" onclick="like(this)">♡ <span>0</span> Like</button><button class="action" onclick="showNotice('Comments will be available after account setup.')">▢ Comment</button><button class="action" onclick="sharePage()">↗ Share</button></div></div>
+        <div class="post-head">
+          <div class="avatar">L</div>
+          <div><b>LINETOK Community</b><div class="handle">@linetok · Welcome</div></div>
+        </div>
+        <div class="post-media">
+          <div class="placeholder">
+            <strong>Welcome to LINETOK</strong>
+            Your next favorite video starts here.
+          </div>
+        </div>
+        <div class="post-foot">
+          <p>Welcome to LINETOK! Upload your first video. ✨</p>
+          <div class="actions">
+            <button class="action" onclick="like(this)">♡ <span>0</span> Like</button>
+            <button class="action" onclick="openAuth('login')">▢ Comment</button>
+            <button class="action" onclick="sharePage()">↗ Share</button>
+          </div>
+        </div>
       </article>
     </section>
   </main>
+
   <aside class="right">
-    <div class="right-card"><h3>🔥 Trending topics</h3><div class="trend"><b>#Bangladesh</b><span>Discover local creators</span></div><div class="trend"><b>#CreativeLife</b><span>Ideas worth sharing</span></div><div class="trend"><b>#Entertainment</b><span>What's happening now</span></div></div>
-    <div class="right-card"><h3>✨ Join the community</h3><p class="muted">A place for fresh ideas, short videos and new voices.</p><button class="btn btn-green" style="width:100%" onclick="showNotice('Account registration will be enabled in the next setup step.')">Create account</button></div>
-    <p class="muted">About · Guidelines · Privacy · Terms</p>
+    <div class="right-card">
+      <h3>🔥 Trending topics</h3>
+      <div class="trend"><b>#Bangladesh</b><span>Discover local creators</span></div>
+      <div class="trend"><b>#CreativeLife</b><span>Ideas worth sharing</span></div>
+      <div class="trend"><b>#Entertainment</b><span>What's happening now</span></div>
+    </div>
+    <div class="right-card">
+      <h3>✨ Join the community</h3>
+      <p class="muted">A place for fresh ideas and short videos.</p>
+      <button class="btn btn-green" onclick="openAuth('signup')">Create account</button>
+    </div>
   </aside>
 </div>
+
 <footer>© 2026 LINETOK · Create. Share. Connect.</footer>
-</div>
+
 <div class="modal" id="uploadModal">
   <div class="dialog">
-    <h2>Upload a video</h2><p>Choose a video from your device and add a caption.</p>
-    <div class="drop">＋<br><b>Select your video</b><br><span class="muted">MP4, WebM or MOV · Demo preview only</span><br><input type="file" id="videoFile" accept="video/*"></div>
+    <h2>Upload a video</h2>
+    <p class="muted">Choose a video for local preview.</p>
+    <input class="field" type="file" id="videoFile" accept="video/*">
     <input class="field" id="caption" placeholder="Write a caption...">
-    <div class="dialog-actions"><button class="btn btn-ghost" onclick="closeUpload()">Cancel</button><button class="btn btn-green" onclick="publishVideo()">Preview post</button></div>
-    <p class="muted" style="margin:14px 0 0">This starter version previews videos in your browser only. Public uploads for all users require cloud storage and a database.</p>
+    <div class="dialog-actions">
+      <button class="btn btn-ghost" onclick="closeUpload()">Cancel</button>
+      <button class="btn btn-green" onclick="publishVideo()">Preview post</button>
+    </div>
+    <p class="muted">Demo preview only. Public video uploads are not connected yet.</p>
   </div>
 </div>
+
+<div class="modal" id="authModal">
+  <div class="dialog">
+    <h2 id="authTitle">Welcome back</h2>
+    <p id="authDescription" class="muted">Log in to your LINETOK account.</p>
+    <form id="authForm">
+      <input class="field" id="authName" placeholder="Your username" style="display:none">
+      <input class="field" id="authEmail" type="email" placeholder="Email address" required>
+      <input class="field" id="authPassword" type="password" placeholder="Password (at least 6 characters)" minlength="6" required>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" type="button" onclick="closeAuth()">Cancel</button>
+        <button class="btn btn-green" id="authSubmit" type="submit">Log in</button>
+      </div>
+    </form>
+    <div class="auth-switch">
+      <button class="btn btn-ghost" onclick="setAuthMode('login')">Log in</button>
+      <button class="btn btn-ghost" onclick="setAuthMode('signup')">Create account</button>
+    </div>
+    <div class="auth-status" id="authStatus">Secured by Supabase Authentication.</div>
+  </div>
+</div>
+
 <div class="notice" id="notice"></div>
+
 <script>
-const modal=document.getElementById('uploadModal');
-function openUpload(){modal.classList.add('open')}
-function closeUpload(){modal.classList.remove('open')}
-function showNotice(msg){const n=document.getElementById('notice');n.textContent=msg;n.style.display='block';setTimeout(()=>n.style.display='none',3200)}
-function like(btn){btn.classList.toggle('liked');let s=btn.querySelector('span');s.textContent=Number(s.textContent)+(btn.classList.contains('liked')?1:-1);btn.firstChild.textContent=btn.classList.contains('liked')?'♥ ':'♡ '}
-function sharePage(){if(navigator.share){navigator.share({title:'LINETOK',url:location.href})}else{navigator.clipboard?.writeText(location.href);showNotice('LINETOK link copied (if clipboard permission is available).')}}
-function setNav(btn,label){document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');if(label!=='For You')showNotice(label+' will be connected to your account in the next setup step.')}
-function switchTab(btn){document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');showNotice(btn.textContent+' feed selected. Connect the backend to load real videos.')}
-function publishVideo(){
- const file=document.getElementById('videoFile').files[0];if(!file){showNotice('Please select a video first.');return}
- if(!file.type.startsWith('video/')){showNotice('Please choose a video file.');return}
- const url=URL.createObjectURL(file),caption=document.getElementById('caption').value.trim();
- const post=document.createElement('article');post.className='post';
- const safeName=file.name.replace(/[<>]/g,'');
- post.innerHTML='<div class="post-head"><div class="avatar">Y</div><div><div class="user">You</div><div class="handle">@your-preview · just now</div></div></div><div class="post-media"><video controls playsinline src="'+url+'"></video></div><div class="post-foot"><p class="caption"></p><div class="actions"><button class="action" onclick="like(this)">♡ <span>0</span> Like</button><button class="action" onclick="showNotice(\'Comments need account setup.\')">▢ Comment</button><button class="action" onclick="sharePage()">↗ Share</button></div></div>';
- post.querySelector('.caption').textContent=caption||safeName;
- document.getElementById('feed').prepend(post);closeUpload();document.getElementById('videoFile').value='';document.getElementById('caption').value='';showNotice('Video preview added to this browser session.');
+const uploadModal=document.getElementById('uploadModal');
+function openUpload(){uploadModal.classList.add('open')}
+function closeUpload(){uploadModal.classList.remove('open')}
+function showNotice(msg){
+ const n=document.getElementById('notice');
+ n.textContent=msg;n.style.display='block';
+ setTimeout(()=>n.style.display='none',3200);
 }
-document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter')showNotice('Search will work after the database is connected.')});
+function like(btn){
+ btn.classList.toggle('liked');
+ const s=btn.querySelector('span');
+ s.textContent=Number(s.textContent)+(btn.classList.contains('liked')?1:-1);
+ btn.firstChild.textContent=btn.classList.contains('liked')?'♥ ':'♡ ';
+}
+function sharePage(){
+ if(navigator.share) navigator.share({title:'LINETOK',url:location.href});
+ else {navigator.clipboard?.writeText(location.href);showNotice('Link copied!')}
+}
+function switchTab(btn){
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ showNotice(btn.textContent+' feed selected.');
+}
+function publishVideo(){
+ const file=document.getElementById('videoFile').files[0];
+ if(!file){showNotice('Please select a video first.');return}
+ if(!file.type.startsWith('video/')){showNotice('Choose a video file.');return}
+ const url=URL.createObjectURL(file);
+ const caption=document.getElementById('caption').value.trim();
+ const post=document.createElement('article');
+ post.className='post';
+ post.innerHTML='<div class="post-head"><div class="avatar">Y</div><div><b>You</b><div class="handle">@your-preview</div></div></div><div class="post-media"><video controls playsinline style="width:100%;height:100%;object-fit:contain" src="'+url+'"></video></div><div class="post-foot"><p class="caption"></p></div>';
+ post.querySelector('.caption').textContent=caption||file.name;
+ document.getElementById('feed').prepend(post);
+ closeUpload();showNotice('Video preview added in this browser only.');
+}
+
+document.getElementById('search').addEventListener('keydown',e=>{
+ if(e.key==='Enter')showNotice('Search database is not connected yet.');
+});
 </script>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://jlhpxxotjqwhodykmbxd.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_XHzA-mD8T9KNVGDeL-kywg_paox3Fye';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+let authMode='login';
+
+window.openAuth=(mode='login')=>{
+ setAuthMode(mode);
+ document.getElementById('authStatus').textContent='Secured by Supabase Authentication.';
+ document.getElementById('authModal').classList.add('open');
+};
+window.closeAuth=()=>document.getElementById('authModal').classList.remove('open');
+
+window.setAuthMode=(mode)=>{
+ authMode=mode;
+ const signup=mode==='signup';
+ document.getElementById('authTitle').textContent=signup?'Create your LINETOK account':'Welcome back';
+ document.getElementById('authDescription').textContent=signup?'Join the LINETOK community.':'Log in to your LINETOK account.';
+ document.getElementById('authName').style.display=signup?'block':'none';
+ document.getElementById('authName').required=signup;
+ document.getElementById('authPassword').autocomplete=signup?'new-password':'current-password';
+ document.getElementById('authSubmit').textContent=signup?'Create account':'Log in';
+};
+
+function updateAccountUI(user){
+ const loginBtn=document.getElementById('loginBtn');
+ const signupBtn=document.getElementById('signupBtn');
+ if(user){
+  loginBtn.textContent=user.user_metadata?.username||user.email?.split('@')[0]||'My account';
+  loginBtn.onclick=()=>showNotice('Signed in as '+user.email);
+  signupBtn.textContent='Log out';
+  signupBtn.onclick=async()=>{
+   const {error}=await supabase.auth.signOut();
+   if(error)showNotice(error.message);
+   else showNotice('You have been logged out.');
+  };
+ }else{
+  loginBtn.textContent='Log in';
+  loginBtn.onclick=()=>openAuth('login');
+  signupBtn.textContent='Create account';
+  signupBtn.onclick=()=>openAuth('signup');
+ }
+}
+
+document.getElementById('authForm').addEventListener('submit',async(event)=>{
+ event.preventDefault();
+ const submit=document.getElementById('authSubmit');
+ const status=document.getElementById('authStatus');
+ submit.disabled=true;submit.textContent='Please wait...';
+ status.textContent='';
+ const email=document.getElementById('authEmail').value.trim();
+ const password=document.getElementById('authPassword').value;
+ try{
+  if(authMode==='signup'){
+   const username=document.getElementById('authName').value.trim();
+   const {data,error}=await supabase.auth.signUp({
+    email,password,options:{data:{username}}
+   });
+   if(error)throw error;
+   if(data.session){
+    closeAuth();showNotice('Account created. Welcome to LINETOK!');
+   }else{
+    status.textContent='Account created. Check your email and click the confirmation link, then log in.';
+   }
+  }else{
+   const {error}=await supabase.auth.signInWithPassword({email,password});
+   if(error)throw error;
+   closeAuth();showNotice('Successfully logged in. Welcome back!');
+  }
+ }catch(error){
+  status.textContent=error.message||'Something went wrong.';
+ }finally{
+  submit.disabled=false;
+  submit.textContent=authMode==='signup'?'Create account':'Log in';
+ }
+});
+
+const {data:{session}}=await supabase.auth.getSession();
+updateAccountUI(session?.user||null);
+supabase.auth.onAuthStateChange((_event,newSession)=>{
+ updateAccountUI(newSession?.user||null);
+});
+</script>
+
 </body>
 </html>
