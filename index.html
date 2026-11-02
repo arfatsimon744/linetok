@@ -19,12 +19,11 @@ button,input{font:inherit}button{cursor:pointer}
 .welcome,.right-card,.post,.dialog{background:var(--panel);border:1px solid var(--line);border-radius:17px}.welcome{padding:23px;margin-bottom:20px}.welcome h1{margin:0 0 5px}.welcome p,.muted{color:var(--muted)}
 .tabs{display:flex;gap:20px;border-bottom:1px solid var(--line);margin-bottom:18px}.tabs button{border:0;background:none;color:var(--muted);padding:12px}.tabs button.active{color:var(--green);border-bottom:2px solid var(--green)}
 .feed{display:grid;gap:18px}.post{overflow:hidden}.post-head{display:flex;align-items:center;gap:11px;padding:14px}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#1b3828;color:var(--green);font-weight:bold}.handle{font-size:12px;color:var(--muted)}
-.post-media{width:100%;aspect-ratio:9/12;max-height:600px;background:#050706;display:grid;place-items:center;overflow:hidden;position:relative}.post-media video{width:100%;height:100%;object-fit:contain}
-.sound-toggle{position:absolute;right:12px;bottom:12px;z-index:2;border:1px solid #ffffff40;border-radius:30px;background:#000b;color:white;padding:8px 12px;font-weight:700}
-.placeholder{text-align:center;padding:30px}.placeholder strong{display:block;color:var(--green);font-size:21px}.post-foot{padding:14px}.actions{display:flex;gap:18px}.action{background:none;border:0;color:#aab8af}.action.liked{color:var(--green)}
+.post-media{width:100%;aspect-ratio:9/12;max-height:600px;background:#050706;display:grid;place-items:center;overflow:hidden}.post-media video{width:100%;height:100%;object-fit:contain}.sound-toggle{position:absolute;right:12px;bottom:12px;z-index:2;border:1px solid #ffffff40;border-radius:30px;background:#000b;color:white;padding:8px 12px;font-weight:700}.post-media{position:relative}.placeholder{text-align:center;padding:30px}.placeholder strong{display:block;color:var(--green);font-size:21px}.post-foot{padding:14px}.actions{display:flex;gap:18px}.action{background:none;border:0;color:#aab8af}.action.liked{color:var(--green)}
 .right-card{padding:17px;margin-bottom:14px}.trend{padding:9px 0;border-bottom:1px solid #26332d}.trend span{display:block;font-size:12px;color:var(--muted)}
 .modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;place-items:center;padding:20px}.modal.open{display:grid}.dialog{width:min(500px,100%);padding:23px}.field{width:100%;margin-top:14px;padding:12px;border-radius:10px;background:#0a100d;border:1px solid var(--line);color:white}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.auth-switch{display:flex;gap:10px;margin-top:15px}.auth-switch button{flex:1}.auth-status{font-size:12px;color:var(--muted);margin-top:12px;overflow-wrap:anywhere}
 .notice{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#183c29;color:white;padding:12px 17px;border-radius:12px;display:none;z-index:50;max-width:90%;text-align:center}footer{text-align:center;color:#68776e;padding:20px;font-size:12px}
+.profile-row{display:flex;align-items:center;gap:12px}.profile-avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#1b3828;color:var(--green);font-size:22px;font-weight:900}.profile-stats{display:flex;gap:20px;margin:15px 0;color:var(--muted)}.profile-stats b{color:var(--text)}.post-author{cursor:pointer;background:none;border:0;color:inherit;text-align:left;padding:0}.post-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:10px}.comment-list{display:grid;gap:8px;margin-top:12px}.comment-item{background:#0b120e;border:1px solid #223129;border-radius:10px;padding:9px 11px;font-size:13px}.comment-item b{color:var(--green);margin-right:6px}.comment-form{display:flex;gap:8px;margin-top:10px}.comment-form input{min-width:0;flex:1;background:#0a100d;border:1px solid var(--line);border-radius:9px;padding:10px;color:white}.small-btn{padding:8px 11px;font-size:13px}.follow-btn{margin-left:auto}.profile-bio{color:var(--muted);white-space:pre-wrap}.profile-videos{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:15px}.profile-video{aspect-ratio:1;background:#050706;overflow:hidden;border-radius:8px}.profile-video video{width:100%;height:100%;object-fit:cover}
 @media(max-width:900px){.layout{grid-template-columns:160px minmax(0,1fr)}.right{display:none}}
 @media(max-width:600px){.topbar{height:auto;padding:12px;flex-wrap:wrap}.brand{font-size:18px}.search{display:none}.layout{display:block;padding:12px}.sidebar{margin-bottom:15px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.nav small{display:none}.top-actions .btn{padding:8px}}
 </style>
@@ -41,100 +40,85 @@ button,input{font:inherit}button{cursor:pointer}
 </header>
 
 <div class="layout">
- <aside class="sidebar">
-  <nav class="nav">
-   <button onclick="showNotice('For You selected')">⌂ For You</button>
-   <button onclick="showNotice('Following will be available soon')">♡ Following</button>
-   <button onclick="showNotice('Explore will be available soon')">⌕ Explore</button>
-   <button onclick="showNotice('LIVE coming soon')">◉ LIVE</button>
-   <small>YOUR SPACE</small>
-   <button onclick="openAuth('login')">♙ My Profile</button>
-   <button onclick="openAuth('login')">▣ Saved</button>
-  </nav>
- </aside>
-
+ <aside class="sidebar"><nav class="nav">
+  <button onclick="showNotice('For You selected')">⌂ For You</button>
+  <button onclick="showNotice('Following will be available soon')">♡ Following</button>
+  <button onclick="showNotice('Explore will be available soon')">⌕ Explore</button>
+  <button onclick="showNotice('LIVE coming soon')">◉ LIVE</button>
+  <small>YOUR SPACE</small>
+  <button onclick="openMyProfile()">♙ My Profile</button>
+  <button onclick="openAuth('login')">▣ Saved</button>
+ </nav></aside>
  <main>
-  <section class="welcome">
-   <h1>Every scroll has a story.</h1>
-   <p>Create, share and discover videos with the LINETOK community.</p>
-  </section>
-
+  <section class="welcome"><h1>Every scroll has a story.</h1><p>Create, share and discover videos with the LINETOK community.</p></section>
   <div class="tabs">
    <button class="active" onclick="switchTab(this)">For You</button>
    <button onclick="switchTab(this)">Trending</button>
    <button onclick="switchTab(this)">Latest</button>
   </div>
-
-  <section class="feed" id="feed">
-   <article class="post">
-    <div class="placeholder">
-     <strong>Welcome to LINETOK</strong>
-     Your next favorite video starts here.
-    </div>
-   </article>
-  </section>
+  <section class="feed" id="feed"><article class="post"><div class="placeholder"><strong>Welcome to LINETOK</strong>Your next favorite video starts here.</div></article></section>
  </main>
-
  <aside class="right">
-  <div class="right-card">
-   <h3>🔥 Trending topics</h3>
-   <div class="trend"><b>#Bangladesh</b><span>Discover local creators</span></div>
-   <div class="trend"><b>#CreativeLife</b><span>Ideas worth sharing</span></div>
-   <div class="trend"><b>#Entertainment</b><span>What's happening now</span></div>
-  </div>
-  <div class="right-card">
-   <h3>✨ Join the community</h3>
-   <p class="muted">A place for fresh ideas and short videos.</p>
-   <button class="btn btn-green" onclick="openAuth('signup')">Create account</button>
-  </div>
+  <div class="right-card"><h3>🔥 Trending topics</h3><div class="trend"><b>#Bangladesh</b><span>Discover local creators</span></div><div class="trend"><b>#CreativeLife</b><span>Ideas worth sharing</span></div><div class="trend"><b>#Entertainment</b><span>What's happening now</span></div></div>
+  <div class="right-card"><h3>✨ Join the community</h3><p class="muted">A place for fresh ideas and short videos.</p><button class="btn btn-green" onclick="openAuth('signup')">Create account</button></div>
  </aside>
 </div>
-
 <footer>© 2026 LINETOK · Create. Share. Connect.</footer>
 
-<div class="modal" id="uploadModal">
- <div class="dialog">
-  <h2>Upload a video</h2>
-  <p class="muted">Your video will be published publicly for the LINETOK community.</p>
-  <input class="field" type="file" id="videoFile" accept="video/*">
-  <input class="field" id="caption" maxlength="500" placeholder="Write a caption...">
-  <div class="dialog-actions">
-   <button class="btn btn-ghost" onclick="closeUpload()">Cancel</button>
-   <button class="btn btn-green" id="publishBtn" onclick="publishVideo()">Publish video</button>
-  </div>
-  <p class="muted">For the first test, choose a video under 50 MB.</p>
- </div>
-</div>
+<div class="modal" id="uploadModal"><div class="dialog">
+ <h2>Upload a video</h2><p class="muted">Your video will be published publicly for the LINETOK community.</p>
+ <input class="field" type="file" id="videoFile" accept="video/*">
+ <input class="field" id="caption" maxlength="500" placeholder="Write a caption...">
+ <div class="dialog-actions"><button class="btn btn-ghost" onclick="closeUpload()">Cancel</button><button class="btn btn-green" id="publishBtn" onclick="publishVideo()">Publish video</button></div>
+ <p class="muted">For the first test, choose a video under 50 MB.</p>
+</div></div>
 
-<div class="modal" id="authModal">
- <div class="dialog">
-  <h2 id="authTitle">Welcome back</h2>
-  <p id="authDescription" class="muted">Log in to your LINETOK account.</p>
-  <form id="authForm">
-   <input class="field" id="authName" placeholder="Your username" style="display:none">
-   <input class="field" id="authEmail" type="email" placeholder="Email address" required>
-   <input class="field" id="authPassword" type="password" placeholder="Password (at least 6 characters)" minlength="6" required>
-   <div class="dialog-actions">
-    <button class="btn btn-ghost" type="button" onclick="closeAuth()">Cancel</button>
-    <button class="btn btn-green" id="authSubmit" type="submit">Log in</button>
-   </div>
-  </form>
-  <div class="auth-switch">
-   <button class="btn btn-ghost" onclick="setAuthMode('login')">Log in</button>
-   <button class="btn btn-ghost" onclick="setAuthMode('signup')">Create account</button>
+<div class="modal" id="authModal"><div class="dialog">
+ <h2 id="authTitle">Welcome back</h2><p id="authDescription" class="muted">Log in to your LINETOK account.</p>
+ <form id="authForm">
+  <input class="field" id="authName" placeholder="Your username" style="display:none">
+  <input class="field" id="authEmail" type="email" placeholder="Email address" required>
+  <input class="field" id="authPassword" type="password" placeholder="Password (at least 6 characters)" minlength="6" required>
+  <div class="dialog-actions"><button class="btn btn-ghost" type="button" onclick="closeAuth()">Cancel</button><button class="btn btn-green" id="authSubmit" type="submit">Log in</button></div>
+ </form>
+ <div class="auth-switch"><button class="btn btn-ghost" onclick="setAuthMode('login')">Log in</button><button class="btn btn-ghost" onclick="setAuthMode('signup')">Create account</button></div>
+ <div class="auth-status" id="authStatus">Secured by Supabase Authentication.</div>
+</div></div>
+
+<div class="modal" id="profileModal"><div class="dialog">
+ <div class="profile-row">
+  <div class="profile-avatar" id="profileAvatar">L</div>
+  <div style="min-width:0">
+   <h2 id="profileDisplayName" style="margin:0">My Profile</h2>
+   <div class="muted" id="profileUsername">@username</div>
   </div>
-  <div class="auth-status" id="authStatus">Secured by Supabase Authentication.</div>
  </div>
-</div>
+ <div class="profile-stats">
+  <span><b id="profilePosts">0</b> Videos</span>
+  <span><b id="profileFollowers">0</b> Followers</span>
+  <span><b id="profileFollowing">0</b> Following</span>
+ </div>
+ <p class="profile-bio" id="profileBio"></p>
+ <div id="profileEditFields" style="display:none">
+  <input class="field" id="editDisplayName" maxlength="60" placeholder="Display name">
+  <input class="field" id="editUsername" maxlength="30" placeholder="Username">
+  <textarea class="field" id="editBio" maxlength="250" rows="3" placeholder="Write a short bio..."></textarea>
+ </div>
+ <div class="dialog-actions">
+  <button class="btn btn-ghost" onclick="closeProfile()">Close</button>
+  <button class="btn btn-ghost" id="profileFollowBtn" style="display:none" onclick="toggleFollowFromProfile()">Follow</button>
+  <button class="btn btn-green" id="profileEditBtn" style="display:none" onclick="toggleProfileEdit()">Edit profile</button>
+  <button class="btn btn-green" id="profileSaveBtn" style="display:none" onclick="saveProfile()">Save profile</button>
+ </div>
+ <div class="auth-status" id="profileStatus"></div>
+</div></div>
 
 <div class="notice" id="notice"></div>
 
 <script>
 const uploadModal=document.getElementById('uploadModal');
-
 function openUpload(){uploadModal.classList.add('open')}
 function closeUpload(){uploadModal.classList.remove('open')}
-
 function showNotice(msg){
  const n=document.getElementById('notice');
  n.textContent=msg;
@@ -142,26 +126,24 @@ function showNotice(msg){
  clearTimeout(window.noticeTimer);
  window.noticeTimer=setTimeout(()=>n.style.display='none',3500);
 }
-
 function switchTab(btn){
  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
  btn.classList.add('active');
  showNotice(btn.textContent+' feed selected.');
 }
-
 function publishVideo(){
  if(window.uploadVideoToSupabase)window.uploadVideoToSupabase();
  else showNotice('Connecting to LINETOK. Please wait.');
 }
-
 function sharePage(){
  if(navigator.share)navigator.share({title:'LINETOK',url:location.href}).catch(()=>{});
- else if(navigator.clipboard)navigator.clipboard.writeText(location.href).then(()=>showNotice('Link copied!')).catch(()=>showNotice('Could not copy link.'));
+ else if(navigator.clipboard)navigator.clipboard.writeText(location.href).then(()=>showNotice('Link copied!')).catch(()=>{});
 }
-
 document.getElementById('search').addEventListener('input',e=>{
  const q=e.target.value.trim().toLowerCase();
- document.querySelectorAll('#feed .post').forEach(p=>p.style.display=p.textContent.toLowerCase().includes(q)?'':'none');
+ document.querySelectorAll('#feed .post').forEach(p=>{
+  p.style.display=p.textContent.toLowerCase().includes(q)?'':'none';
+ });
 });
 </script>
 
@@ -172,34 +154,41 @@ const SUPABASE_URL='https://jlhpxxotjqwhodykmbxd.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_XHzA-mD8T9KNVGDeL-kywg_paox3Fye';
 
 const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+
 let authMode='login';
+let currentUser=null;
+let activeProfileId=null;
+let profileEditMode=false;
+
+const $=id=>document.getElementById(id);
 
 window.openAuth=(mode='login')=>{
  window.setAuthMode(mode);
- document.getElementById('authStatus').textContent='Secured by Supabase Authentication.';
- document.getElementById('authModal').classList.add('open');
+ $('authStatus').textContent='Secured by Supabase Authentication.';
+ $('authModal').classList.add('open');
 };
 
-window.closeAuth=()=>document.getElementById('authModal').classList.remove('open');
+window.closeAuth=()=>$('authModal').classList.remove('open');
 
-window.setAuthMode=(mode)=>{
+window.setAuthMode=mode=>{
  authMode=mode;
  const signup=mode==='signup';
- document.getElementById('authTitle').textContent=signup?'Create your LINETOK account':'Welcome back';
- document.getElementById('authDescription').textContent=signup?'Join the LINETOK community.':'Log in to your LINETOK account.';
- document.getElementById('authName').style.display=signup?'block':'none';
- document.getElementById('authName').required=signup;
- document.getElementById('authPassword').autocomplete=signup?'new-password':'current-password';
- document.getElementById('authSubmit').textContent=signup?'Create account':'Log in';
+ $('authTitle').textContent=signup?'Create your LINETOK account':'Welcome back';
+ $('authDescription').textContent=signup?'Join the LINETOK community.':'Log in to your LINETOK account.';
+ $('authName').style.display=signup?'block':'none';
+ $('authName').required=signup;
+ $('authPassword').autocomplete=signup?'new-password':'current-password';
+ $('authSubmit').textContent=signup?'Create account':'Log in';
 };
 
 function updateAccountUI(user){
- const loginBtn=document.getElementById('loginBtn');
- const signupBtn=document.getElementById('signupBtn');
+ currentUser=user;
+ const loginBtn=$('loginBtn');
+ const signupBtn=$('signupBtn');
 
  if(user){
   loginBtn.textContent=user.user_metadata?.username||user.email?.split('@')[0]||'My account';
-  loginBtn.onclick=()=>showNotice('Signed in as '+user.email);
+  loginBtn.onclick=()=>window.openMyProfile();
   signupBtn.textContent='Log out';
   signupBtn.onclick=async()=>{
    const {error}=await supabase.auth.signOut();
@@ -214,11 +203,31 @@ function updateAccountUI(user){
  }
 }
 
-async function loadVideos(){
- const feed=document.getElementById('feed');
+async function ensureProfile(user){
+ if(!user)return;
+ const fallback=(user.email||'creator').split('@')[0].replace(/[^a-zA-Z0-9_]/g,'').slice(0,25)||'creator';
+ const username=(user.user_metadata?.username||fallback).slice(0,30);
+ const {error}=await supabase.from('profiles').upsert({
+  id:user.id,
+  username,
+  display_name:user.user_metadata?.username||fallback
+ },{onConflict:'id',ignoreDuplicates:true});
+ if(error)console.warn('Profile setup:',error.message);
+}
 
- const {data:videos,error}=await supabase
-  .from('videos')
+async function getProfileMap(ids){
+ if(!ids.length)return {};
+ const {data,error}=await supabase.from('profiles')
+  .select('id,username,display_name,bio,avatar_url')
+  .in('id',[...new Set(ids)]);
+ if(error){console.warn(error);return {}}
+ return Object.fromEntries((data||[]).map(p=>[p.id,p]));
+}
+
+async function loadVideos(){
+ const feed=$('feed');
+
+ const {data:videos,error}=await supabase.from('videos')
   .select('id,user_id,video_url,caption,created_at')
   .order('created_at',{ascending:false});
 
@@ -230,42 +239,68 @@ async function loadVideos(){
 
  feed.replaceChildren();
 
- if(!videos||videos.length===0){
+ if(!videos?.length){
   const empty=document.createElement('article');
   empty.className='post';
-  const box=document.createElement('div');
-  box.className='placeholder';
-  const title=document.createElement('strong');
-  title.textContent='Welcome to LINETOK';
-  const message=document.createElement('div');
-  message.textContent='No videos yet. Log in and publish the first video!';
-  box.append(title,message);
-  empty.append(box);
+  empty.innerHTML='<div class="placeholder"><strong>Welcome to LINETOK</strong>No videos yet. Log in and publish the first video!</div>';
   feed.append(empty);
   return;
  }
 
+ const ids=videos.map(v=>v.user_id);
+
+ const [profilesResult,likesResult,commentsResult,followingResult]=await Promise.all([
+  getProfileMap(ids),
+  supabase.from('likes').select('video_id,user_id').in('video_id',videos.map(v=>v.id)),
+  supabase.from('comments').select('id,video_id,user_id,content,created_at').in('video_id',videos.map(v=>v.id)).order('created_at',{ascending:true}),
+  currentUser?supabase.from('follows').select('following_id').eq('follower_id',currentUser.id):Promise.resolve({data:[]})
+ ]);
+
+ const profiles=profilesResult;
+ const likes=likesResult.data||[];
+ const comments=commentsResult.data||[];
+ const following=new Set((followingResult.data||[]).map(x=>x.following_id));
+ const commentProfiles=await getProfileMap(comments.map(c=>c.user_id));
+
  videos.forEach(video=>{
+  const author=profiles[video.user_id]||{username:'creator',display_name:'LINETOK Creator'};
+  const videoLikes=likes.filter(x=>x.video_id===video.id);
+  const videoComments=comments.filter(x=>x.video_id===video.id);
+  const liked=!!currentUser&&videoLikes.some(x=>x.user_id===currentUser.id);
+  const isOwn=currentUser?.id===video.user_id;
+
   const post=document.createElement('article');
   post.className='post';
+  post.dataset.search=(author.username+' '+author.display_name+' '+(video.caption||'')).toLowerCase();
 
   const head=document.createElement('div');
   head.className='post-head';
 
   const avatar=document.createElement('div');
   avatar.className='avatar';
-  avatar.textContent='L';
+  avatar.textContent=(author.display_name||author.username||'L').charAt(0).toUpperCase();
 
   const identity=document.createElement('div');
-  const name=document.createElement('b');
-  name.textContent='LINETOK Creator';
+
+  const authorBtn=document.createElement('button');
+  authorBtn.className='post-author';
+  authorBtn.textContent=author.display_name||author.username;
+  authorBtn.onclick=()=>window.openUserProfile(video.user_id);
 
   const handle=document.createElement('div');
   handle.className='handle';
-  handle.textContent='@creator · '+new Date(video.created_at).toLocaleDateString();
+  handle.textContent='@'+author.username+' · '+new Date(video.created_at).toLocaleDateString();
 
-  identity.append(name,handle);
+  identity.append(authorBtn,handle);
   head.append(avatar,identity);
+
+  if(currentUser&&!isOwn){
+   const follow=document.createElement('button');
+   follow.className='btn btn-ghost small-btn follow-btn';
+   follow.textContent=following.has(video.user_id)?'Following':'＋ Follow';
+   follow.onclick=()=>toggleFollow(video.user_id,follow);
+   head.append(follow);
+  }
 
   const media=document.createElement('div');
   media.className='post-media';
@@ -277,19 +312,15 @@ async function loadVideos(){
   player.preload='metadata';
   player.muted=true;
   player.loop=true;
-  player.autoplay=false;
   player.setAttribute('webkit-playsinline','');
 
   const sound=document.createElement('button');
   sound.className='sound-toggle';
   sound.type='button';
   sound.textContent='🔇 Sound off';
-  sound.setAttribute('aria-label','Turn video sound on');
-
   sound.onclick=()=>{
    player.muted=!player.muted;
    sound.textContent=player.muted?'🔇 Sound off':'🔊 Sound on';
-   sound.setAttribute('aria-label',player.muted?'Turn video sound on':'Turn video sound off');
   };
 
   media.append(player,sound);
@@ -300,57 +331,280 @@ async function loadVideos(){
   const caption=document.createElement('p');
   caption.textContent=video.caption||'';
 
+  const actions=document.createElement('div');
+  actions.className='post-actions';
+
+  const like=document.createElement('button');
+  like.className='action'+(liked?' liked':'');
+  like.textContent=(liked?'♥':'♡')+' '+videoLikes.length+' Like'+(videoLikes.length===1?'':'s');
+  like.onclick=()=>toggleLike(video.id,like);
+
+  const commentCount=document.createElement('span');
+  commentCount.className='action';
+  commentCount.textContent='💬 '+videoComments.length+' Comments';
+
   const share=document.createElement('button');
   share.className='action';
-  share.type='button';
   share.textContent='↗ Share';
-
   share.onclick=()=>{
-   if(navigator.share){
-    navigator.share({title:'LINETOK video',url:video.video_url}).catch(()=>{});
-   }else if(navigator.clipboard){
-    navigator.clipboard.writeText(video.video_url)
-     .then(()=>showNotice('Video link copied!'))
-     .catch(()=>showNotice('Could not copy link.'));
-   }
+   if(navigator.share)navigator.share({title:'LINETOK video',url:video.video_url}).catch(()=>{});
+   else if(navigator.clipboard)navigator.clipboard.writeText(video.video_url)
+    .then(()=>showNotice('Video link copied!'))
+    .catch(()=>showNotice('Could not copy link.'));
   };
 
-  foot.append(caption,share);
+  actions.append(like,commentCount,share);
+
+  const commentList=document.createElement('div');
+  commentList.className='comment-list';
+
+  videoComments.slice(-5).forEach(c=>{
+   const row=document.createElement('div');
+   row.className='comment-item';
+   const b=document.createElement('b');
+   b.textContent='@'+(commentProfiles[c.user_id]?.username||'user');
+   row.append(b,document.createTextNode(c.content));
+   commentList.append(row);
+  });
+
+  const form=document.createElement('form');
+  form.className='comment-form';
+
+  const input=document.createElement('input');
+  input.maxLength=500;
+  input.placeholder=currentUser?'Write a comment...':'Log in to comment';
+  input.disabled=!currentUser;
+
+  const send=document.createElement('button');
+  send.className='btn btn-green small-btn';
+  send.textContent='Send';
+  send.disabled=!currentUser;
+
+  form.append(input,send);
+
+  form.onsubmit=async e=>{
+   e.preventDefault();
+   const content=input.value.trim();
+   if(!content)return;
+   send.disabled=true;
+
+   const {error}=await supabase.from('comments').insert({
+    video_id:video.id,
+    user_id:currentUser.id,
+    content
+   });
+
+   send.disabled=false;
+
+   if(error){
+    showNotice('Comment failed: '+error.message);
+    return;
+   }
+
+   input.value='';
+   await loadVideos();
+  };
+
+  foot.append(caption,actions,commentList,form);
   post.append(head,media,foot);
   feed.append(post);
  });
 
- // TikTok-style autoplay: visible video plays, other videos pause.
+ // TikTok-style autoplay
  if(window.videoAutoplayObserver)window.videoAutoplayObserver.disconnect();
 
- window.videoAutoplayObserver=new IntersectionObserver((entries)=>{
+ window.videoAutoplayObserver=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-   const video=entry.target;
-
-   if(entry.isIntersecting && entry.intersectionRatio>=0.65){
+   const v=entry.target;
+   if(entry.isIntersecting&&entry.intersectionRatio>=.65){
     document.querySelectorAll('#feed video').forEach(other=>{
-     if(other!==video)other.pause();
+     if(other!==v)other.pause();
     });
-
-    const playAttempt=video.play();
-    if(playAttempt&&typeof playAttempt.catch==='function'){
-     playAttempt.catch(()=>{});
-    }
+    v.play().catch(()=>{});
    }else{
-    video.pause();
+    v.pause();
    }
   });
- },{threshold:[0,0.25,0.65,0.9]});
+ },{threshold:[0,.25,.65,.9]});
 
- document.querySelectorAll('#feed video').forEach(video=>{
-  window.videoAutoplayObserver.observe(video);
- });
+ document.querySelectorAll('#feed video').forEach(v=>window.videoAutoplayObserver.observe(v));
 }
 
+async function toggleLike(videoId,button){
+ if(!currentUser){
+  showNotice('Please log in to like videos.');
+  window.openAuth('login');
+  return;
+ }
+
+ button.disabled=true;
+
+ const {data:existing,error:findError}=await supabase.from('likes')
+  .select('id').eq('video_id',videoId).eq('user_id',currentUser.id).maybeSingle();
+
+ if(findError){
+  showNotice(findError.message);
+  button.disabled=false;
+  return;
+ }
+
+ let error;
+
+ if(existing){
+  ({error}=await supabase.from('likes').delete().eq('id',existing.id));
+ }else{
+  ({error}=await supabase.from('likes').insert({
+   video_id:videoId,
+   user_id:currentUser.id
+  }));
+ }
+
+ if(error)showNotice('Like failed: '+error.message);
+ await loadVideos();
+}
+
+async function toggleFollow(userId,button){
+ if(!currentUser){
+  showNotice('Please log in to follow creators.');
+  window.openAuth('login');
+  return;
+ }
+
+ button.disabled=true;
+
+ const {data:existing,error:findError}=await supabase.from('follows')
+  .select('id').eq('follower_id',currentUser.id)
+  .eq('following_id',userId).maybeSingle();
+
+ if(findError){
+  showNotice(findError.message);
+  button.disabled=false;
+  return;
+ }
+
+ let error;
+
+ if(existing){
+  ({error}=await supabase.from('follows').delete().eq('id',existing.id));
+ }else{
+  ({error}=await supabase.from('follows').insert({
+   follower_id:currentUser.id,
+   following_id:userId
+  }));
+ }
+
+ if(error)showNotice('Follow failed: '+error.message);
+
+ await loadVideos();
+
+ if(activeProfileId===userId)await renderProfile(userId);
+}
+
+window.openUserProfile=async id=>{
+ activeProfileId=id;
+ profileEditMode=false;
+ await renderProfile(id);
+ $('profileModal').classList.add('open');
+};
+
+window.openMyProfile=()=>{
+ if(!currentUser){
+  window.openAuth('login');
+  return;
+ }
+ window.openUserProfile(currentUser.id);
+};
+
+window.closeProfile=()=>$('profileModal').classList.remove('open');
+
+async function renderProfile(id){
+ const [{data:p,error},posts,followerRows,followingRows]=await Promise.all([
+  supabase.from('profiles').select('*').eq('id',id).maybeSingle(),
+  supabase.from('videos').select('id').eq('user_id',id),
+  supabase.from('follows').select('id').eq('following_id',id),
+  supabase.from('follows').select('id').eq('follower_id',id)
+ ]);
+
+ if(error||!p){
+  $('profileStatus').textContent='Could not load profile.';
+  return;
+ }
+
+ const own=currentUser?.id===id;
+
+ $('profileAvatar').textContent=(p.display_name||p.username||'L').charAt(0).toUpperCase();
+ $('profileDisplayName').textContent=p.display_name||p.username;
+ $('profileUsername').textContent='@'+p.username;
+ $('profilePosts').textContent=posts.data?.length||0;
+ $('profileFollowers').textContent=followerRows.data?.length||0;
+ $('profileFollowing').textContent=followingRows.data?.length||0;
+ $('profileBio').textContent=p.bio||'No bio yet.';
+
+ $('profileEditFields').style.display=profileEditMode?'block':'none';
+ $('profileDisplayName').style.display=profileEditMode?'none':'';
+ $('profileUsername').style.display=profileEditMode?'none':'';
+ $('profileBio').style.display=profileEditMode?'none':'';
+
+ $('profileEditBtn').style.display=own&&!profileEditMode?'inline-block':'none';
+ $('profileSaveBtn').style.display=own&&profileEditMode?'inline-block':'none';
+ $('profileFollowBtn').style.display=!own&&currentUser?'inline-block':'none';
+ $('profileStatus').textContent='';
+
+ if(profileEditMode){
+  $('editDisplayName').value=p.display_name||'';
+  $('editUsername').value=p.username||'';
+  $('editBio').value=p.bio||'';
+ }
+
+ if(!own&&currentUser){
+  const {data:f}=await supabase.from('follows').select('id')
+   .eq('follower_id',currentUser.id).eq('following_id',id).maybeSingle();
+
+  $('profileFollowBtn').textContent=f?'Following':'＋ Follow';
+ }
+}
+
+window.toggleProfileEdit=async()=>{
+ profileEditMode=!profileEditMode;
+ await renderProfile(activeProfileId);
+};
+
+window.saveProfile=async()=>{
+ const username=$('editUsername').value.trim().replace(/^@/,'');
+ const display_name=$('editDisplayName').value.trim();
+ const bio=$('editBio').value.trim();
+
+ if(!/^[a-zA-Z0-9_]{3,30}$/.test(username)){
+  showNotice('Username must be 3–30 characters: letters, numbers or underscore.');
+  return;
+ }
+
+ const {error}=await supabase.from('profiles').update({
+  username,
+  display_name:display_name||username,
+  bio
+ }).eq('id',currentUser.id);
+
+ if(error){
+  $('profileStatus').textContent='Save failed: '+error.message;
+  return;
+ }
+
+ profileEditMode=false;
+ showNotice('Profile updated!');
+ await renderProfile(currentUser.id);
+ await loadVideos();
+};
+
+window.toggleFollowFromProfile=async()=>{
+ const btn=$('profileFollowBtn');
+ await toggleFollow(activeProfileId,btn);
+};
+
 window.uploadVideoToSupabase=async()=>{
- const file=document.getElementById('videoFile').files[0];
- const caption=document.getElementById('caption').value.trim();
- const button=document.getElementById('publishBtn');
+ const file=$('videoFile').files[0];
+ const caption=$('caption').value.trim();
+ const button=$('publishBtn');
 
  if(!file){
   showNotice('Please select a video first.');
@@ -363,7 +617,7 @@ window.uploadVideoToSupabase=async()=>{
  }
 
  if(file.size>50*1024*1024){
-  showNotice('Video is larger than 50 MB. Choose a smaller video.');
+  showNotice('Video is larger than 50 MB.');
   return;
  }
 
@@ -383,48 +637,34 @@ window.uploadVideoToSupabase=async()=>{
   const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
   const path=user.id+'/'+crypto.randomUUID()+'-'+safeName;
 
-  const {error:uploadError}=await supabase.storage
-   .from('videos')
-   .upload(path,file,{
-    cacheControl:'3600',
-    upsert:false,
-    contentType:file.type
-   });
+  const {error:uploadError}=await supabase.storage.from('videos').upload(
+   path,file,{cacheControl:'3600',upsert:false,contentType:file.type}
+  );
 
   if(uploadError)throw uploadError;
-
   uploadedPath=path;
 
-  const {data:publicData}=supabase.storage
-   .from('videos')
-   .getPublicUrl(path);
+  const {data:publicData}=supabase.storage.from('videos').getPublicUrl(path);
 
-  const {error:insertError}=await supabase
-   .from('videos')
-   .insert({
-    user_id:user.id,
-    video_url:publicData.publicUrl,
-    caption:caption||null
-   });
+  const {error:insertError}=await supabase.from('videos').insert({
+   user_id:user.id,
+   video_url:publicData.publicUrl,
+   caption:caption||null
+  });
 
   if(insertError)throw insertError;
 
-  document.getElementById('videoFile').value='';
-  document.getElementById('caption').value='';
-
+  $('videoFile').value='';
+  $('caption').value='';
   closeUpload();
   showNotice('Video published successfully!');
   await loadVideos();
 
  }catch(error){
-  console.error('LINETOK upload error:',error);
+  console.error(error);
 
   if(uploadedPath){
-   const {error:cleanupError}=await supabase.storage
-    .from('videos')
-    .remove([uploadedPath]);
-
-   if(cleanupError)console.warn(cleanupError);
+   await supabase.storage.from('videos').remove([uploadedPath]);
   }
 
   showNotice('Upload failed: '+(error.message||'Please try again.'));
@@ -435,22 +675,22 @@ window.uploadVideoToSupabase=async()=>{
  }
 };
 
-document.getElementById('authForm').addEventListener('submit',async(event)=>{
+$('authForm').addEventListener('submit',async event=>{
  event.preventDefault();
 
- const submit=document.getElementById('authSubmit');
- const status=document.getElementById('authStatus');
+ const submit=$('authSubmit');
+ const status=$('authStatus');
 
  submit.disabled=true;
  submit.textContent='Please wait...';
  status.textContent='';
 
- const email=document.getElementById('authEmail').value.trim();
- const password=document.getElementById('authPassword').value;
+ const email=$('authEmail').value.trim();
+ const password=$('authPassword').value;
 
  try{
   if(authMode==='signup'){
-   const username=document.getElementById('authName').value.trim();
+   const username=$('authName').value.trim();
 
    const {data,error}=await supabase.auth.signUp({
     email,
@@ -460,11 +700,13 @@ document.getElementById('authForm').addEventListener('submit',async(event)=>{
 
    if(error)throw error;
 
+   if(data.user)await ensureProfile(data.user);
+
    if(data.session){
     closeAuth();
     showNotice('Account created. Welcome to LINETOK!');
    }else{
-    status.textContent='Account created. Check your email and click the confirmation link, then log in.';
+    status.textContent='Account created. Check your email and confirm, then log in.';
    }
 
   }else{
@@ -472,7 +714,7 @@ document.getElementById('authForm').addEventListener('submit',async(event)=>{
    if(error)throw error;
 
    closeAuth();
-   showNotice('Successfully logged in. Welcome back!');
+   showNotice('Successfully logged in!');
   }
 
  }catch(error){
@@ -488,8 +730,12 @@ const {data:{session}}=await supabase.auth.getSession();
 
 updateAccountUI(session?.user||null);
 
+if(session?.user)await ensureProfile(session.user);
+
 supabase.auth.onAuthStateChange((_event,newSession)=>{
  updateAccountUI(newSession?.user||null);
+ if(newSession?.user)ensureProfile(newSession.user);
+ loadVideos();
 });
 
 await loadVideos();
